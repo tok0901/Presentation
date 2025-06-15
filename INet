@@ -1,0 +1,5 @@
+namespace Pre0616;
+interface INet
+{
+    public void PrintName();
+}
