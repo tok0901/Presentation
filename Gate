@@ -1,0 +1,40 @@
+namespace Pre0616;
+class Gate : GateLevelNet
+{
+    public List<Gate> inGates = new List<Gate>();
+    //public List<Gate> outNets = new List<Gate>();
+
+    static readonly int AND_CTR_VALUE_0 = 0;
+    static readonly int OR_CTR_VALUE_1 = 1;
+
+    static readonly int IN_ID = 100;
+    static readonly int AND_ID = 101;
+    static readonly int OR_ID = 102;
+    static readonly int NOT_ID = 103;
+
+    static bool controlJudge = false;
+
+    public bool CalculateValueJudge(Gate gate)
+    {
+        if (gate.Value == 0 || gate.Value == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public override int CalculateValue() : base.CalculateValue() { }
+
+    public Gate(string name,List<Gate> inGates) : base(name)
+    {
+        foreach (Gate addGate in inGates)
+        {
+            this.inGates.Add(addGate);
+        }
+    }
+
+    public Gate(string name) : base(name) { }
+}
