@@ -1,0 +1,31 @@
+namespace Pre0616;
+class NetList
+{
+    public List<GateLevelNet> nets = new List<GateLevelNet>();
+
+    //public void AddNet(GateLevelNet net)
+    //{
+    //    netList.Add(net);
+    //}
+
+    protected void SetNetList(List<GateLevelNet> nets)
+    {
+        foreach(GateLevelNet net in nets)
+        {
+            net.PrintNet();
+        }
+
+        if (StandardInputReader.GetInt32("信号線情報を登録しますか？:(Yes:1,No:2)>") == 1)
+        {
+            this.nets = nets;
+        }
+        else
+        {
+            Console.WriteLine("登録に失敗しました.");
+        }
+
+        
+    }
+
+    
+}
