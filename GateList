@@ -1,0 +1,61 @@
+namespace Pre0616;
+class GateList
+{
+    public List<Gate> gates = new List<Gate>();
+
+    public void AddGate(Gate gate)
+    {
+        gateList.Add(gate);
+    }
+
+    public List<GateLvelNet> CastNetList()
+    {
+        List<GateLevelNet> castNets = new List<GateLevelNet>();
+
+        foreach(Gate net in this.gates)
+        {
+            castNets.Add((GateLevelNet)net);
+        }
+
+        return castNets;
+    }
+
+    //overroad
+    public List<GateLvelNet> CastNetList(List<Gate> gates)
+    {
+        List<GateLevelNet> castNets = new List<GateLevelNet>();
+
+        foreach (Gate net in gates)
+        {
+            castNets.Add((GateLevelNet)net);
+        }
+
+        return castNets;
+    }
+
+    public void SetGateList(List<Gate> gates)
+    {
+
+    }
+
+    public void UpdateList(int index, Gate gate,ref NetList netList)
+    {
+        List<Gate> updategates = new List<Gate>();
+
+        for (int update_number = 0; update_number < this.gates.Count; update_number++)
+        {
+            if (update_number == index)
+            {
+                updategates.Add(gate);
+            }
+            else
+            {
+                updategates.Add(this.gates[update_number]);
+            }
+        }
+
+
+        List<GateLevelNet> updateNets = this.CastNetList(updategates);
+        netList.SetList(updateNets);
+    }
+}
