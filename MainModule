@@ -1,0 +1,33 @@
+namespace Pre0616;
+
+class MainModule
+{
+    public static void Main()
+    {
+        IN Gate0 = new IN("Gate0",1);
+        IN Gate1 = new IN("Gate1",1);
+        IN Gate2 = new IN("Gate2",1);
+
+        AND Gate3 = new AND("Gate3");
+        NOT Gate4 = new NOT("Gate4");
+
+        OR Gate5 = new OR("Gate5");
+        GateList gateList = new GateList();
+        gateList.AddGate((Gate)Gate0);
+        gateList.AddGate((Gate)Gate1);
+        gateList.AddGate((Gate)Gate2);
+        gateList.AddGate((Gate)Gate3);
+        gateList.AddGate((Gate)Gate4);
+        gateList.AddGate((Gate)Gate5);
+
+        List<GateLevelNet> casts = gateList.CastNetList();
+
+        NetList netList = new NetList();
+
+        netList.SetList(casts);
+
+        AND updateGate5 = new AND("updateGate5");
+
+        gateList.UpdateList(5, (Gate)updateGate5,ref netList);
+    }
+}
