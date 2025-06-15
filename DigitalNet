@@ -1,0 +1,6 @@
+namespace Pre0616;
+abstract class DigitalNet : INet
+{
+    public void PrintName();
+    public int CalculateValue();
+}
