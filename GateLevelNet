@@ -1,0 +1,26 @@
+namespace Pre0616;
+class GateLevelNet : DigitalNet
+{
+    protected string name;
+    protected int value;
+
+    public string Name { get { return this.name; } }
+    public int Value { get { return this.value; } }
+
+    public void PrintName()
+    {
+        Console.WriteLine($"信号線名:{this.name},論理値:{this.value}");
+    }
+
+    public virtual int CalculateValue()
+    {
+        Console.WriteLine("計算不能なオブジェクトです");
+        this.value = -1;
+        return -1;
+    }
+
+    public GateLevelNet(string name)
+    {
+        this.name = name;
+    }
+}
