@@ -1,0 +1,119 @@
+namespace Pre0616;
+class IN : Gate
+{
+    public IN(string name,int value) : base(name)
+    {
+        this.value = value;
+    }
+
+    public override int CalculateValue()
+    {
+        if (base.CalculateValueJudge(this))
+        {
+            return this.value;
+        }
+        else
+        {
+            return base.CalculateValue();
+        }
+    }
+}
+
+class AND : Gate
+{
+    public AND(string name,List<Gate> inGates) : base(name,inGates){}
+
+    public override int CalculateValue()
+    {
+        foreach(Gate inNet in this.inNets)
+        {
+
+            if (base.CalculateValueJudge(inNet))
+            {
+                if(inNet.value == AND_CTR_VALUE_0)
+                {
+                    base.controlJudge = true;
+                }
+            }
+            else
+            {
+                return base.CalculateValue();
+            }
+
+        }
+
+        if (base.controlJudge)
+        {
+            this.value = AND_CTR_VALUE_0;
+            retrun this.value;
+        }
+
+        else
+        {
+            this.value = OR_CTR_VALUE_1;
+            return this.value;
+        }
+    }
+}
+class OR : Gate
+{
+    public OR(string name, List<Gate> inGates) : base(name, inGates) { }
+
+    public override int CalculateValue()
+    {
+        foreach (Gate inNet in this.inNets)
+        {
+
+            if (base.CalculateValueJudge(inNet))
+            {
+                if (inNet.value == OR_CTR_VALUE_1)
+                {
+                    base.controlJudge = true;
+                }
+            }
+            else
+            {
+                return base.CalculateValue();
+            }
+
+        }
+
+        if (base.controlJudge)
+        {
+            this.value = OR_CTR_VALUE_1;
+            retrun this.value;
+        }
+
+        else
+        {
+            this.value = AND_CTR_VALUE_0;
+            return this.value;
+        }
+    }
+}
+class NOT : Gate
+{
+    public NOT(string name, List<Gate> inGates) : base(name, inGates) { }
+
+    public override int CalculateValue()
+    {
+        if (base.CalculateValueJudge(this.inNets[0]))
+        {
+            if(this.inNets[0].value == AND_CTR_VALUE_0)
+            {
+                this.value = OR_CTR_VALUE_1;
+                return this.value;
+            }
+            else
+            {
+                this.value = AND_CTR_VALUE_0;
+                return this.value;
+            }
+        }
+        else
+        {
+            return base.CalculateValue();
+        }
+    }
+}
+
