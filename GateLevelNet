@@ -1,7 +1,7 @@
 namespace Pre0616;
 class GateLevelNet : DigitalNet
 {
-    protected string name;
+    private string name;
     protected int value;
 
     public string Name { get { return this.name; } }
